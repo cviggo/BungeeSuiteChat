@@ -18,6 +18,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Collection;
+
 
 public class BungeeSuiteChat extends JavaPlugin {
 
@@ -122,11 +124,22 @@ public class BungeeSuiteChat extends JavaPlugin {
     private boolean setupVault() {
         if ( !packageExists( "net.milkbowl.vault.chat.Chat" ) )
             return false;
+
+        final Collection<Class<?>> knownServices = getServer().getServicesManager().getKnownServices();
+
+        getLogger().info("------ Dumping Services ------");
+
+        for (Class<?> knownService : knownServices) {
+            getLogger().info(knownService.getName());
+        }
+
+        getLogger().info("------ Done ------");
+
         RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration( net.milkbowl.vault.chat.Chat.class );
         if ( chatProvider != null ) {
             CHAT = chatProvider.getProvider();
         } else {
-            this.getLogger().info( "No Vault found" );
+            this.getLogger().info( "No Vault found service provider found" );
         }
         return ( CHAT != null );
     }
@@ -139,7 +152,7 @@ public class BungeeSuiteChat extends JavaPlugin {
 
             return true;
         } catch ( Exception e ) {
-            this.getLogger().info( "No Vault found" );
+            this.getLogger().info( "No Vault found while searching for package" );
             return false;
         }
     }

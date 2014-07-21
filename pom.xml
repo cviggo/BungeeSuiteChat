@@ -4,7 +4,7 @@
     <artifactId>BungeeSuiteChat</artifactId>
     <version>0.5</version>
     <properties>
-        <build.number>${BUILD_NUMBER}</build.number>
+        <build.number>1</build.number>
     </properties>
 
     <repositories>
@@ -23,12 +23,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.7.2-R0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>net.milkbowl.vault</groupId>
-            <artifactId>Vault</artifactId>
-            <version>1.2.27-SNAPSHOT</version>
+            <version>1.6.4-R2.0</version>
         </dependency>
         <dependency>
             <groupId>com.massivecraft.factions</groupId>
